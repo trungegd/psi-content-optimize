@@ -69,4 +69,12 @@ if (!empty($_POST)) {
         $za->addDir($zipPath, '');
         $za->close();
     }
+
+    $zipName = $zipPath . '.zip';
+    header("Content-type: application/zip");
+    header("Content-Disposition: attachment; filename=$zipName");
+    header("Content-length: " . filesize($zipName));
+    header("Pragma: no-cache");
+    header("Expires: 0");
+    readfile("$zipName");
 }
